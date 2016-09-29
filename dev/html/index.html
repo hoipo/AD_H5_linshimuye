@@ -70,6 +70,7 @@
             loader.addCompletionListener(function() {
                 $("#loading").hide();
                 $("#page1 .panel,#page1 .fingerTips").addClass("show");
+                loaderCompleted();
             });
             loader.start();
         })();
