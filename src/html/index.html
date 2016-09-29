@@ -20,10 +20,16 @@
             <div id="loading-text">0%</div>
         </div>
         <div class="page-wrap">
-            <div class="page">
+            <div class="page" id="page1">
                 <div class="title">page one</div>
                 <div class="subtitle">page one subtitle</div>
                 <div class="arrow"></div>
+                <div class="panel-wrapper">
+                    <div class="panel"></div>
+                    <div class="pink-dot"></div>
+                    <div class="fingerTips"></div>
+                </div>
+                <div class="ad-Sign"></div>
             </div>
             <div class="page">
                 <div class="title">page two</div>
@@ -45,23 +51,25 @@
     <script src="../js/PageSlider.js"></script>
     <script src="../js/index.js"></script>
     <script>
-        ;(function() {
+        ;
+        (function() {
             var basePath = "../img/";
             var loader = new WxMoment.Loader();
             var $loadingText = document.querySelector("#loading-text");
             var $loadingProgress = document.querySelector("#loading-progress");
-            var fileList = ['logo.png', 'black-arrow.png', 'ad.png', 'p1-bg1.png','p1-bg2.jpg','p1-btnplay.png','p1-finger.png','p1-panel.png','p1-pink-point.png','p1-replay.png','p1-text1.png','p1-video-thumb.png','p2-charater.png','p2-eyes1.png','p2-eyes2.png','p2-feather1.png','p2-tag.png','p2-text.png','p2-title1.png','p2-title2.png','p3-bg.jpg','p3-buy1.png','p3-buy2.png','p3-buy3.png','p3-detail1.png','p3-pic1.png','p3-pic2.png','p3-pic3.png','p3-pic4.png','p3-text1.png','p3-text2.png','p3-text3.png','p4-charater.png'];
+            var fileList = ['logo.png', 'black-arrow.png', 'ad.png', 'p1-bg1.png', 'p1-bg2.jpg', 'p1-btnplay.png', 'p1-finger.png', 'p1-panel.png', 'p1-pink-point.png', 'p1-replay.png', 'p1-text1.png', 'p1-video-thumb.png', 'p2-charater.png', 'p2-eyes1.png', 'p2-eyes2.png', 'p2-feather1.png', 'p2-tag.png', 'p2-text.png', 'p2-title1.png', 'p2-title2.png', 'p3-bg.jpg', 'p3-buy1.png', 'p3-buy2.png', 'p3-buy3.png', 'p3-detail1.png', 'p3-pic1.png', 'p3-pic2.png', 'p3-pic3.png', 'p3-pic4.png', 'p3-text1.png', 'p3-text2.png', 'p3-text3.png', 'p4-charater.png'];
             for (var i = 0; i < fileList.length; i++) {
                 loader.addImage(basePath + fileList[i]);
             }
-            loader.addProgressListener(function (e) {
+            loader.addProgressListener(function(e) {
                 var percent = Math.round((e.completedCount / e.totalCount) * 100);
-                $loadingText.innerText = percent+"%";
-                $loadingProgress.style.width = percent*0.7 + "%";
+                $loadingText.innerText = percent + "%";
+                $loadingProgress.style.width = percent * 0.7 + "%";
 
             });
-            loader.addCompletionListener(function () {
-                    $("#loading").hide();
+            loader.addCompletionListener(function() {
+                $("#loading").hide();
+                $("#page1 .panel,#page1 .fingerTips").addClass("show");
             });
             loader.start();
         })();
