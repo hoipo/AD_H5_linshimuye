@@ -504,9 +504,11 @@ html[data-rem="320"] {
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 html,
@@ -516,7 +518,13 @@ body {
   overflow: hidden;
 }
 
-.page-wrap {
+#view {
+  position: absolute;
+}
+
+.page-wrap,
+#view,
+#loading {
   width: 100%;
   height: 100%;
 }
@@ -524,6 +532,67 @@ body {
 .page {
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+.ad-Sign {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  background-image: url(../img/ad.png);
+  width: 68px;
+  height: 14.5px;
+  background-size: 68px 14.5px;
+}
+
+.arrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 20px;
+  background-image: url(../img/black-arrow.png);
+  width: 25.5px;
+  height: 13.5px;
+  background-size: 25.5px 13.5px;
+  animation: swipeMoveTop .7s linear infinite alternate;
+}
+
+@keyframes swipeMoveTop {
+  0% {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0px, 0);
+  }
+}
+
+/* loading css */
+
+#loading {
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  background-position: center 210px;
+  background-size: 201px 64.5px;
+}
+
+#loading-progress {
+  position: absolute;
+  left: 48px;
+  top: 330px;
+  width: 0;
+  height: 2PX;
+  background-color: #000;
+}
+
+#loading-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 338px;
+  width: 100%;
+  text-align: center;
 }
