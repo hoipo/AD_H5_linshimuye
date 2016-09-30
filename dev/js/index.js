@@ -1,7 +1,7 @@
  var innerIndex = 0;
  new PageSlider({
      pages: $('.page-wrap .page'),
-     dev: 1,
+     dev: 3,
      onSwipeUp: function() {
          switch (this.index) {
              case 0:
