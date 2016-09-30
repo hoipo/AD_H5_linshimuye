@@ -9,6 +9,37 @@
     <meta name="description" content="" />
     <meta name="apple-mobile-web-app-capable" content="no" />
     <meta name="format-detection" content="telephone=no">
+    <script>
+        ! function(a, b, c) {
+            function q() {
+                var d = Math.min((o ? e[h]().width : f.innerWidth) / (a / b), c);
+                d != p && (k.innerHTML = "html{font-size:" + d + "px!important;" + n + "}", p = d)
+            }
+
+            function r() {
+                clearTimeout(l), l = setTimeout(q, 500)
+            }
+            var l, d = document,
+                e = d.documentElement,
+                f = window,
+                g = "addEventListener",
+                h = "getBoundingClientRect",
+                i = "pageshow",
+                j = d.head || d.getElementsByTagName("HEAD")[0],
+                k = d.createElement("STYLE"),
+                m = "text-size-adjust:100%;",
+                n = "-webkit-" + m + "-moz-" + m + "-ms-" + m + "-o-" + m + m,
+                o = h in e,
+                p = null;
+            a = a || 320, b = b || 16, c = c || 32, j.appendChild(k), d[g]("DOMContentLoaded", q, !1), "on" + i in f ? f[g](i, function(a) {
+                a.persisted && r()
+            }, !1) : f[g]("load", r, !1), f[g]("resize", r, !1), q()
+        }(
+            320,
+            20,
+            32
+        );
+    </script>
     <link rel="stylesheet" type="text/css" href="../css/style-index.css" />
 </head>
 
@@ -18,7 +49,7 @@
             <div class="page" id="page1" data-lock-next="true">
                 <div class="logo"></div>
                 <div class="videoCon">
-                    <video class="video" poster="../img/video-placeholder.jpg" src="http://zhanghaibo.net/pchouse/dev/img//1474344479014-vpchouse-77178-1.mp4"></video>
+                    <video class="video" poster="../img/p1-video-thumb.png" src="http://zhanghaibo.net/pchouse/dev/img//1474344479014-vpchouse-77178-1.mp4"></video>
                     <div class="btn-play"></div>
                 </div>
                 <div class="replay-tips"></div>
@@ -27,10 +58,19 @@
                 <div class="arrow"></div>
                 <div class="ad-Sign white"></div>
             </div>
-            <div class="page">
-                <div class="title">page two</div>
-                <div class="subtitle">page two subtitle</div>
+            <div class="page" id="page2">
+                <div class="charater">
+                    <div class="eyes"></div>
+                </div>
+                <div class="title1"></div>
+                <div class="title2"></div>
+                <div class="text"></div>
+                <div class="tag-line"></div>
+                <div class="tag"></div>
+                <div class="heart1"></div>
+                <div class="heart2"></div>
                 <div class="arrow"></div>
+                <div class="ad-Sign"></div>
             </div>
             <div class="page">
                 <div class="title">page three</div>

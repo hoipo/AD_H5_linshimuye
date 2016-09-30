@@ -1,6 +1,7 @@
  var innerIndex = 0;
  new PageSlider({
      pages: $('.page-wrap .page'),
+     dev: 1,
      onSwipeUp: function() {
          switch (this.index) {
              case 0:
@@ -37,7 +38,7 @@
                  if (innerIndex === 3) {
                      page.find('.text2').addClass("show");
                      page.find(".videoCon,.replay-tips").hide();
-                      page.data('lock-next', true);
+                     page.data('lock-next', true);
                      innerIndex--;
                  } else if (innerIndex === 2) {
                      page.find('.text1').addClass("show");
