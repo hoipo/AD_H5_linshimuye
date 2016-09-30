@@ -14,22 +14,18 @@
 
 <body>
     <div id="view">
-        <div id="loading">
-            <div class="ad-Sign"></div>
-            <div id="loading-progress"></div>
-            <div id="loading-text">0%</div>
-        </div>
         <div class="page-wrap">
-            <div class="page" id="page1">
-                <div class="title">page one</div>
-                <div class="subtitle">page one subtitle</div>
-                <div class="arrow"></div>
-                <div class="panel-wrapper">
-                    <div class="panel"></div>
-                    <div class="pink-dot"></div>
-                    <div class="fingerTips"></div>
+            <div class="page" id="page1" data-lock-next="true">
+                <div class="logo"></div>
+                <div class="videoCon">
+                    <video class="video" poster="../img/video-placeholder.jpg" src="http://zhanghaibo.net/pchouse/dev/img//1474344479014-vpchouse-77178-1.mp4"></video>
+                    <div class="btn-play"></div>
                 </div>
-                <div class="ad-Sign"></div>
+                <div class="replay-tips"></div>
+                <div class="text1"></div>
+                <div class="text2"></div>
+                <div class="arrow"></div>
+                <div class="ad-Sign white"></div>
             </div>
             <div class="page">
                 <div class="title">page two</div>
@@ -46,6 +42,19 @@
                 <div class="subtitle">page four subtitle</div>
             </div>
         </div>
+        <div class="panel-wrapper">
+            <div class="panel"></div>
+            <div class="pink-dot"></div>
+            <div class="fingerTips"></div>
+            <div class="ad-Sign"></div>
+        </div>
+        <div id="loading">
+            <div class="ad-Sign"></div>
+            <div id="loading-progress"></div>
+            <div id="loading-text">0%</div>
+        </div>
+
+
     </div>
     <script src="//wximg.qq.com/wxp/libs/wxmoment/0.0.4/wxmoment.min.js"></script>
     <script src="../js/PageSlider.js"></script>
@@ -65,11 +74,10 @@
                 var percent = Math.round((e.completedCount / e.totalCount) * 100);
                 $loadingText.innerText = percent + "%";
                 $loadingProgress.style.width = percent * 0.7 + "%";
-
             });
             loader.addCompletionListener(function() {
                 $("#loading").hide();
-                $("#page1 .panel,#page1 .fingerTips").addClass("show");
+                $(".panel,.fingerTips").addClass("show");
                 loaderCompleted();
             });
             loader.start();
