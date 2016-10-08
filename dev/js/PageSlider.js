@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Created by littledu on 15/6/17.
  */
@@ -12,27 +14,27 @@
 (function ($, window) {
     //默认参数
     var defaults = {
-        direction: 'vertical',    //滚动方向：vertical/horizontal
-        currentClass: 'current',  //当前 className
-        gestureFollowing: false,  //是否需要手势跟随
-        hasDot: false,            //是否生成标识点
+        direction: 'vertical', //滚动方向：vertical/horizontal
+        currentClass: 'current', //当前 className
+        gestureFollowing: false, //是否需要手势跟随
+        hasDot: false, //是否生成标识点
         rememberLastVisited: false,
         preventDefault: true,
         animationPlayOnce: false,
-        dev: false,               //开发模式，传入数值，直接跳到正在开发的屏数
-        onSwipeUp: function () {  //swipeUp 回调
+        dev: false, //开发模式，传入数值，直接跳到正在开发的屏数
+        onSwipeUp: function onSwipeUp() {//swipeUp 回调
         },
-        onSwipeDown: function () {//swipeDown 回调
+        onSwipeDown: function onSwipeDown() {//swipeDown 回调
         },
-        onSwipeLeft: function () {//swipeLeft 回调
+        onSwipeLeft: function onSwipeLeft() {//swipeLeft 回调
         },
-        onSwipeRight: function () {//swipeRight 回调
+        onSwipeRight: function onSwipeRight() {//swipeRight 回调
         },
-        oninit: function () {     //初始化完成时的回调
+        oninit: function oninit() {//初始化完成时的回调
         },
-        onbeforechange: function () {  //开始切换前的回调
+        onbeforechange: function onbeforechange() {//开始切换前的回调
         },
-        onchange: function () {   //每一屏切换完成时的回调
+        onchange: function onchange() {//每一屏切换完成时的回调
         }
     };
 
@@ -77,7 +79,7 @@
     }
 
     PageSlider.prototype = {
-        _init: function () {
+        _init: function _init() {
             var self = this;
 
             //初始化CSS动画，好让滑动有缓动效果
@@ -88,7 +90,7 @@
                 var $this = $(this),
                     $PageSliderWraper = $this.wrapInner('<div class="PageSlider__wraper"></div>').find('.PageSlider__wraper'),
                     height = $PageSliderWraper.height();
-                
+
                 //当子元素高度超过页面时，需滚完再切换
                 if (height > pageHeight) {
                     $this.data('height', height);
@@ -102,7 +104,7 @@
             //如果是横向滚动
             if (this.direction === 'h') {
                 this.target.css('position', 'relative');
-                this.pages.each(function(index){
+                this.pages.each(function (index) {
                     $(this).css({
                         position: 'absolute',
                         left: index * 100 + '%',
@@ -144,7 +146,7 @@
             this._dev();
         },
 
-        _startHandle: function (e) {
+        _startHandle: function _startHandle(e) {
             var touch = e.touches[0];
 
             //如果动画在执行中则不予以操作
@@ -174,7 +176,7 @@
             }
         },
 
-        _moveHandle: function (e) {
+        _moveHandle: function _moveHandle(e) {
             var touch = e.changedTouches[0],
                 distance,
                 endPos;
@@ -203,13 +205,13 @@
 
             //下面是在有手势跟随时的一些情况
             //1. 如果在第一屏或最后一屏，直接返回
-            if ((this.index <= 0 && endPos > startPos) || (this.index >= this.length - 1 && endPos < startPos)) {
+            if (this.index <= 0 && endPos > startPos || this.index >= this.length - 1 && endPos < startPos) {
                 e.preventDefault();
                 return;
             }
 
             //2. 如果向上或向下被禁止，直接返回
-            if ((distance > 0 && lockPrev) || distance < 0 && lockNext) {
+            if (distance > 0 && lockPrev || distance < 0 && lockNext) {
                 e.preventDefault();
                 return;
             }
@@ -226,11 +228,10 @@
                 this.target.css('-webkit-transform', 'translate(' + distance + ', 0)');
             }
 
-
             this._preventDefault(e);
         },
 
-        _endHandle: function (e) {
+        _endHandle: function _endHandle(e) {
             var touch = e.changedTouches[0],
                 distance,
                 endPos;
@@ -243,7 +244,6 @@
 
             endPos = this.direction === 'v' ? touch.clientY : touch.clientX;
             distance = endPos - startPos;
-
 
             //设置动画缓动
             this._setTransition();
@@ -281,7 +281,7 @@
             }
         },
 
-        moveTo: function (index, direct) {
+        moveTo: function moveTo(index, direct) {
             var distance,
                 self = this;
 
@@ -333,23 +333,23 @@
             }, 500);
         },
 
-        prev: function () {
+        prev: function prev() {
             this.moveTo(this.index - 1);
         },
 
-        next: function () {
+        next: function next() {
             this.moveTo(this.index + 1);
         },
 
-        _setTransition: function () {
+        _setTransition: function _setTransition() {
             this.target.css('-webkit-transition', '-webkit-transform 0.5s ease');
         },
 
-        _removeTransition: function () {
+        _removeTransition: function _removeTransition() {
             this.target.css('-webkit-transition', 'none');
         },
 
-        _currentClass: function (index) {
+        _currentClass: function _currentClass(index) {
             var currentClass = this.currentClass;
 
             this.pages.eq(index).addClass(currentClass);
@@ -358,7 +358,7 @@
             }
         },
 
-        _createDot: function () {
+        _createDot: function _createDot() {
             var dots = '';
 
             for (var i = 0; i < this.length; i++) {
@@ -368,7 +368,7 @@
             $(dots).appendTo(this.target).wrapAll('<ul class="dot-list">');
         },
 
-        _saveLastVisited: function () {
+        _saveLastVisited: function _saveLastVisited() {
             var storage = window.localStorage;
 
             if (storage) {
@@ -376,7 +376,7 @@
             }
         },
 
-        _getLastVisited: function () {
+        _getLastVisited: function _getLastVisited() {
             var storage = window.localStorage;
 
             if (storage) {
@@ -385,7 +385,7 @@
             }
         },
 
-        _bindAnimation: function () {
+        _bindAnimation: function _bindAnimation() {
             var self = this,
                 styleText = '<style>';
 
@@ -401,37 +401,25 @@
 
                 $this.data('animationid', ++index);
 
-                styleText += '.' + self.currentClass +
-                ' ' +
-                '[data-animationid="' + index + '"]' +
-                '{' +
-                '-webkit-animation-name: ' + animationName + ';' +
-                '-webkit-animation-duration: ' + animationDuration + 'ms;' +
-                '-webkit-animation-delay: ' + animationDelay + 'ms;' +
-                '-webkit-animation-timing-function: ' + animationTimeFunction + ';' +
-                '-webkit-animation-fill-mode: ' + animationFillMode + ';' +
-                '-webkit-animation-iteration-count: ' + animationIterationCount + ';' +
-                '}';
-
+                styleText += '.' + self.currentClass + ' ' + '[data-animationid="' + index + '"]' + '{' + '-webkit-animation-name: ' + animationName + ';' + '-webkit-animation-duration: ' + animationDuration + 'ms;' + '-webkit-animation-delay: ' + animationDelay + 'ms;' + '-webkit-animation-timing-function: ' + animationTimeFunction + ';' + '-webkit-animation-fill-mode: ' + animationFillMode + ';' + '-webkit-animation-iteration-count: ' + animationIterationCount + ';' + '}';
             });
 
             styleText + '</style>';
             $('head').eq(0).append(styleText);
         },
 
-        _preventDefault: function (e) {
+        _preventDefault: function _preventDefault(e) {
             this.preventDefault && e.preventDefault();
         },
 
-        _dev: function () {
+        _dev: function _dev() {
             if (this.dev !== false) {
                 this.moveTo(this.dev, true);
             }
         }
-    }
+    };
 
     window.PageSlider = PageSlider;
-
 })(Zepto, window);
 
 if (typeof define === "function" && define.amd) {
